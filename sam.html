@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popular Movies</title>
+    <link rel="stylesheet" href="sam.css">
+</head>
+<body>
+    <h1>Popular Movies</h1>
+
+    
+    <ul id="movies"></ul>
+
+    <script>
+        // Replace YOUR_API_KEY with your actual API key from TMDb
+        const API_KEY = '068f0f7197e9637e1ff61c5fdffa4c95';
+
+        // Define the base URL for TMDb API requests
+        const BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=`;
+
+        // Define the number of pages to fetch
+        const NUM_PAGES = 5;
+
+        // Fetch data from TMDb API and display it on the page
+        for (let i = 1; i <= NUM_PAGES; i++) {
+            fetch(BASE_URL + i)
+                .then(response => response.json())
+                .then(data => {
+                  const numberOfMovies = data.results.length;
+                  console.log(`Got ${numberOfMovies} movies from the API`);
+                  console.log(data)
+
+                    const movies = data.results;
+                    const movieList = document.getElementById('movies');
+
+                    movies.forEach(movie => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <img src="https://image.tmdb.org/t/p/w185/${movie.poster_path}" alt="${movie.title} Poster">
+                            <div>
+                                <strong>${movie.title}</strong><br>
+                                ${movie.release_date}<br>
+                                ${movie.popularity}
+                            </div>`;
+                        movieList.appendChild(li);
+                    });
+                })
+                .catch(error => console.error(error));
+        }
+    </script>
+</body>
+</html>
