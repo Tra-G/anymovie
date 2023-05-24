@@ -1,17 +1,41 @@
-let search = document.querySelector('.search-btn');
-let searchIcon = document.querySelector('.sm-search');
+//The search bar
+let searchBar = document.querySelector('.search-bar');
+let searchBtn = document.querySelector('.searchBtn');
+
 function showSearch() {
-  search.style.display = 'block';
-  searchIcon.style.display = 'none';
+  searchBar.style.display = 'flex';
+  searchBtn.style.display = 'none';
 }
 
-searchIcon.onclick = showSearch;
+searchBtn.onclick = showSearch;
 
+
+/*Side bar hamburger */
+let sidemenu = document.querySelector('.sidemenu');
+let hamburger = document.querySelector('.hamburger');
+let closeBtn = document.querySelector('.fa-xmark');
+let ham = document.querySelector('.hamburger');
+
+function showHamburger() {
+  sidemenu.style.display = 'block';
+  ham.style.display = 'none';
+  closeBtn.style.display = 'block';
+}
+
+function closeHamburger() {
+  sidemenu.style.display = 'none';
+  ham.style.display = 'block';
+  closeBtn.style.display = 'none';
+}
+
+
+hamburger.onclick = showHamburger;
+closeBtn.onclick = closeHamburger;
 
 
 
 //Set API endpoint URL
-const url = 'https://api.themoviedb.org/3/movie/popular?api_key=068f0f7197e9637e1ff61c5fdffa4c95&page=50';
+const url = 'https://api.themoviedb.org/3/movie/popular?api_key=068f0f7197e9637e1ff61c5fdffa4c95&page=1';
 
 const container = document.querySelector('.movie');
 
@@ -22,6 +46,7 @@ fetch(url)
     
     // Loop through the results and create HTML for each movie
     data.results.forEach(movie => {
+      console.log(data)
       const numberOfMovies = data.results.length;
       console.log(`Got ${numberOfMovies} movies from the API`);
 
@@ -46,3 +71,6 @@ fetch(url)
     });
   })
   .catch(error => console.error(error));
+
+
+

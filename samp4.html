@@ -1,0 +1,64 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+  <title>TMDB Movie API</title>
+  <style>
+    body {
+        margin: 0;
+        display: flex;
+    }
+    .side{
+        width: 300px;
+    }
+    .con{
+        width: calc(100% - 300px);
+    }
+    .movie {
+        height: 80vh;
+        background-size: cover;
+        background-position: center;
+    }
+  </style>
+</head>
+<body>
+    <div class="side">
+        <span>Home</span>
+        <span>Home</span>
+        <span>Home</span>
+        <span>Home</span>
+        <span>Home</span>
+    </div>
+
+    <div class="con">
+        <div id="movie"></div>
+    </div>
+
+  <script>
+    const API_KEY = '068f0f7197e9637e1ff61c5fdffa4c95';
+    const API_URL = 'https://api.themoviedb.org/3/movie/popular?api_key=' + API_KEY + '&language=en-US&page=1';
+
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.results);
+        const movie = data.results[0];
+        const posterPath = 'https://image.tmdb.org/t/p/original' + movie.poster_path; 
+        const movieElement = document.createElement('div');
+        movieElement.classList.add('movie');
+        movieElement.style.backgroundImage = 'url(' + posterPath + ')';
+        document.getElementById('movie').appendChild(movieElement);
+      })
+  </script>
+</body>
+</html>-->
+
+
+
+
+
+
+
+
+
+
+
