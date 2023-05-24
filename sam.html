@@ -1,26 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!--ICON LINK-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <title>Popular Movies</title>
     <link rel="stylesheet" href="sam.css">
 </head>
 <body>
     <h1>Popular Movies</h1>
 
-    
+    <div class="search-container">
+        <form style="display: flex; align-items: center;">
+          <input type="text" id="search-input" placeholder="Search movies...">
+          <button type="submit" id="search-btn"><i style="color: #f0f0f0;" class="fa fa-search"></i></button>
+        </form>
+    </div>
+      
+    <div class="results-container">
+        <ul id="results-list"></ul>
+    </div>
+
     <ul id="movies"></ul>
 
     <script>
         // Replace YOUR_API_KEY with your actual API key from TMDb
         const API_KEY = '068f0f7197e9637e1ff61c5fdffa4c95';
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const resultsList = document.getElementById('results-list');
+
+
+
+        searchBtn.addEventListener('click', e => {
+        e.preventDefault();
+        searchMovies(searchInput.value.trim());
+        });
+
+        function searchMovies(query) {
+        resultsList.innerHTML = ''; // clear previous search results
+
+        if (query === '') {
+            return;
+        }
+
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+            const movies = data.results;
+            movies.forEach(movie => {
+                const li = document.createElement('li');
+                const img = document.createElement('img');
+                const title = document.createElement('h3');
+            const releaseDate = document.createElement('p');
+                const overview = document.createElement('p');
+
+                li.classList.add('movie');
+                img.src = `https://image.tmdb.org/t/p/w185${movie.poster_path}`;
+                img.alt = `${movie.title} poster`;
+                title.textContent = movie.title;
+                releaseDate.textContent = `Release date: ${movie.release_date}`;
+                overview.textContent = movie.overview;
+
+                li.appendChild(img);
+                li.appendChild(title);
+                li.appendChild(releaseDate);
+                li.appendChild(overview);
+                resultsList.appendChild(li);
+                console.log(li)
+            });
+            })
+            .catch(error => console.log(error));
+        }
+
 
         // Define the base URL for TMDb API requests
         const BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=`;
 
-        // Define the number of pages to fetch
-        const NUM_PAGES = 5;
+        /* Define the number of pages to fetch
+        const NUM_PAGES = 5;*/
 
-        // Fetch data from TMDb API and display it on the page
+        /* Fetch data from TMDb API and display it on the page
         for (let i = 1; i <= NUM_PAGES; i++) {
             fetch(BASE_URL + i)
                 .then(response => response.json())
@@ -45,7 +106,7 @@
                     });
                 })
                 .catch(error => console.error(error));
-        }
+        }*/
     </script>
 </body>
 </html>
