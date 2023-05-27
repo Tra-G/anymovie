@@ -22,14 +22,14 @@
     
     <div class="body-container">
         <div class="background"></div>
-        <i class="fa-solid fa-xmark"></i>
+        <i class="fa-solid fa-xmark closeBtn"></i>
         <div class="sidemenu">
             <div class="sidebar">
                 <header>
-                    <div style="display: flex; align-items: center;" class="movieheader">
+                    <a  style="display: flex; align-items: center;" class="movieheader" href="samp4.html">
                         <i style="color: hsla(349, 69%, 51%, 1);" class="fa-solid fa-video"></i>
-                        <p style="display: flex; align-items: center;">any<span style="color: hsla(349, 69%, 51%, 1);">movie</span></p>
-                    </div>
+                        <p style="display: flex; align-items: center;">any<span style="color: hsla(349, 69%, 51%, 1);">movie</span></p>                                          
+                    </a>
                 </header>
     
                 <div class="line"></div>
@@ -39,20 +39,20 @@
                         Categories
                     </div>
                     <ul>
-                        <li>Action</li>
-                        <li>Adventure</li>
-                        <li>Animation</li>
-                        <li>Thriller</li>
-                        <li>Comedy</li>
-                        <li>Horror</li>
-                        <li>Romance</li>
-                        <li>History</li>
-                        <li>Tv Movie</li>
-                        <li>War</li>
-                        <li>Fantasy</li>
-                        <li>Music</li>
-                        <li>Drama</li>
-                        <li>Science Fiction</li>
+                        <a class="sidelink" href="#"><li>Action</li></a>
+                        <a class="sidelink" href=""><li>Adventure</li></a>
+                        <a class="sidelink" href=""><li>Animation</li></a>
+                        <a class="sidelink" href=""><li>Thriller</li></a>
+                        <a class="sidelink" href=""><li>Comedy</li></a>
+                        <a class="sidelink" href=""><li>Horror</li></a>
+                        <a class="sidelink" href=""><li>Romance</li></a>
+                        <a class="sidelink" href=""><li>History</li></a>
+                        <a class="sidelink" href=""><li>Tv Movie</li></a>
+                        <a class="sidelink" href=""><li>War</li></a>
+                        <a class="sidelink" href=""><li>Fantasy</li></a>
+                        <a class="sidelink" href=""><li>Music</li></a>
+                        <a class="sidelink" href=""><li>Drama</li></a>
+                        <a class="sidelink" href=""><li>Science Fiction</li></a>
                     </ul>
                 </div>
 
@@ -63,9 +63,9 @@
                         Categories
                     </div>
                     <ul>
-                        <li>Trending</li>
-                        <li>Top Rated</li>
-                        <li>Upcoming</li>
+                        <a class="sidelink" href=""><li>Trending</li></a>
+                        <a class="sidelink" href=""><li>Top Rated</li></a>
+                        <a class="sidelink" href=""><li>Upcoming</li></a>
                     </ul>
                 </div>
             </div>
@@ -79,15 +79,54 @@
                     <button class="search"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
                 
-                <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div style="display: flex; align-items: center;">
+                    <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <i class="fa-solid fa-xmark closeSearch"></i>
+                </div>
 
                 <div class="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
-                
+                </div> 
             </header>
+
+
+            <div class="bg-container">
+                <div class="bgImage">
+                    <div class="details">
+                        <div class="title"></div>
+
+                        <div style="display: flex; align-items: center;">
+                            <span style="padding-right: 1rem;" class="year"></span>
+                            <span class="rating"></span>
+                        </div>
+              
+                        <div class="genre"></div>
+                        <div class="overview"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="slider-container">
+                <header class="popularHeader">
+                    <p>Popular Movies</p>
+                </header>
+                <div class="container">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+        
+                            
+                            </div>
+                        </div>
+                        <div style="color: #000; background-color: #fff; padding: .3rem;" class="swiper-button-next"></div>
+                        <div style="color: #000; background-color: #fff; padding: .3rem;" class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </section>
+        
+
         </div>
 
     </div>

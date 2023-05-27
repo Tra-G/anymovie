@@ -30,22 +30,20 @@ fetch(url)
             console.log(data)
           });
     })
-
-
-    
   })
   .catch(error => console.error(error));*/
 
 
 
  
-const apiKey = '068f0f7197e9637e1ff61c5fdffa4c95'; // replace with your own APIconst searchBtn = document.getElementById('search-btn');
+const apiKey = '068f0f7197e9637e1ff61c5fdffa4c95'; 
 fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
 .then(response => response.json())
 .then(data => {
 
-    const movies = data.results.slice(0, 1); // limit to first 5 movies
+    const movies = data.results.slice(0, 1); 
     const resultsList = document.getElementById('results-list');
+
     movies.forEach(movie => {
     const li = document.createElement('li');
     const img = document.createElement('img');
@@ -54,7 +52,7 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
     const overview = document.createElement('p');
 
     li.classList.add('movie');
-    img.src = `https://image.tmdb.org/t/p/w185${movie.poster_path}`;
+    img.src = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`;
     console.log(movie.poster_path)
     img.alt = `${movie.title} poster`;
     title.textContent = movie.title;

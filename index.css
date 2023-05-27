@@ -17,24 +17,24 @@ body{
     background-color: rgb(18, 18, 18);
     color: #f0f0f0;
 }
-
-/*Body container*/
-
+a{
+    text-decoration: none;
+}
 
 /*SIDE MENU*/
-
 .sidemenu{
     display: none;
     background-color: rgb(11, 12, 13);
     width: 260px;
     height: 100vh;
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     overflow: scroll;
 }
 
-.fa-xmark{
+.closeBtn{
     display: none;
     position: absolute;
     background-color: hsla(250, 6%, 20%, 1);
@@ -43,6 +43,7 @@ body{
     border-radius: 5px;
     top: 20px;
     left: 60%;
+    transition-duration: 0.4s;
 }
 
 .background{
@@ -76,6 +77,12 @@ li{
     padding: 0 1.5rem;
     margin: 2rem 0;
 }
+.sidelink li:hover{
+    color: #f0f0f0;
+    font-weight: 600;
+    transition-duration: 0.4s;
+}
+
 .line{
     width: 100%;
     height: 1px;
@@ -95,9 +102,9 @@ li{
     font-weight: 500;
     margin: .6rem 0;
 }
-
-
-
+.sidemenu.show{
+    display: block;
+}
 /*Movie Header*/
 .movieheader{
     margin: 1rem 0 3rem;
@@ -113,12 +120,15 @@ li{
     font-size: 1.4rem;
 }
 
-/*Header container*/
+/*Main container*/
+.main{
+    width: 100%;
+}
 .header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.3rem 1rem;
+    padding: 1.3rem 0;
     /*margin-left: 260px;*/
 }
 .search-bar{
@@ -129,26 +139,39 @@ li{
     
 }
 .search-bar:hover{
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
-    border: 1px solid #cfcfcf;
+    outline: 1px solid #cfcfcf;
     border-radius: 5px;
 }
+
+
 .search-bar, .search{
     outline: none;
     border: none;
-    padding: .3rem .4rem;
+    padding: .4rem;
     font-size: 1rem;
     background-color: hsla(250, 6%, 20%, 1);
     color: hsla(200, 100%, 95%, 1);
+}
+.search-bar input{
+    width: 30vh;
 }
 .searchBtn{
     outline: none;
     border: none;
     display: flex;
     background-color: hsla(250, 6%, 20%, 1);
-    padding: 12px;
+    padding: 12px 14px;
     color: hsla(200, 100%, 95%, 1);
     border-radius: 5px;
+}
+
+
+.closeSearch{
+    background-color: hsla(250, 6%, 20%, 1);
+    padding: 12px 16px;
+    color: hsla(200, 100%, 95%, 1);
+    border-radius: 5px;
+    display: none;
 }
 .hamburger{
     display: block;
@@ -163,28 +186,92 @@ li{
 }
 
 
-/*Movie container*/
-.movie{
-    width: 95%;
-    margin: 0 auto 2rem;
+/*Background image*/
+.bg-container {
+    height: 50vh;
+  }
+  .bgImage {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 100%;
+  }
+
+
+  .details {
+    width: 20rem;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;   
+  }
+  .details div{
+    margin: .5rem 0;
+}
+  .title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .year, .rating, .genre {
+    color: #c7bfbf;
+    font-size: 15px;
+  }
+  .overview {
+    color: #c7bfbf;
+    font-size: 15px;
+  }
+
+
+
+/*Popular movie slider*/
+.slider-container{
     height: 100vh;
-    display: flex;
-    flex-direction: column;
+}
+.popularHeader{
+    width: 95%;
+    margin: 1.2rem auto 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+h3{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px;
+}
+.img-box img{
+    max-width: 100%;
+    height:  37vh;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
-.moviecard{
-    margin: 4rem 0;
-    height: 350px;
+.slider-container .container{
+    padding: 0 15px;
+    width: 90%;
+    margin: 0 auto;
 }
-.moviecard img{
-    width: 100%;
-    height: 70vh;
-    object-fit: contain;
+.mySwiper{
+    padding: 30px 0;
 }
-.moviecard p{
-    color: #cfcfcf;
-    margin-top: 6px;
+header{
+    color: #fff;
 }
+.votedate{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: .6rem;
+}
+.vote{
+    display: flex;
+    align-items: center;
+}
+
+
+
 
 @media screen and (min-width: 1024px) {
     .body-container{
@@ -199,12 +286,11 @@ li{
     /*Main body*/
     .main{
         margin-left: 260px;
+        width: calc(100% - 260px);
     }
-    
+
     .header{
-        width: 90%;
-        margin: auto;
-        padding: 1.5rem 0 0;
+        padding: 1.5rem;
         
     }
     .fa-video{
@@ -233,35 +319,49 @@ li{
     .searchBtn{
         display: none;
     }
+    .fa-xmark{
+        display: none;
+    }
     .hamburger{
         display: none;
     }
 
+    /*BACKGROUND IMAGE*/
+    .bg-container{
+        height: 60vh;
+        width: 97%;
+        margin: auto;
+    }
+    .bgImage{
+        height: 60vh;
+        border-radius: 7px;
+    }
+    .details{
+        width: 35rem;
+        top: 55%;
+    }
+    .details div{
+        margin: .7rem 0;
+    }
+    .title{
+        font-size: 2.1rem;
+    }
+    .year, .genre, .overview, .rating{
+        font-size: 1rem;
+    }
 
-/*movie container*/
-.movie{
-    width: 90%;
-    flex-direction: row;
-    flex-wrap: wrap;
+
+/*Popular Movie slider*/
+.popularHeader{
+    font-size: 2rem;
 }
-.moviecard{
-    width: 265px;
-    height: 300px;
-    margin: 4.5rem 8px;
-    background-color: aqua;
-}
-.moviecard img{
+.slider-container .container{
+    padding: 0 15px;
     width: 100%;
-    height: 40vh;
-    object-fit: cover;
-}
-.rate{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.icons{
-    display: none;
+    margin: 0 auto;
 }
 
+
+
 }
+

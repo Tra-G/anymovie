@@ -1,0 +1,154 @@
+<!--<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+        .movie-info {
+      position: relative;
+      height: 600px;
+      overflow: hidden;
+    }
+
+    .backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .poster img {
+      width: 200px;
+      height: 300px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -100px;
+    }
+
+    .poster a {
+      position: relative;
+      z-index: 1;
+    }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Movie Info</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="movie-info">
+      <div class="backdrop"></div>
+      <div class="poster">
+        <a href="#">
+          <img src="" alt="Movie Poster" />
+        </a>
+      </div>
+    </div>
+    <script>
+        const API_KEY = "068f0f7197e9637e1ff61c5fdffa4c95";
+        const BASE_URL = "https://api.themoviedb.org/3/";
+
+async function getMovie() {
+  const response = await fetch(
+    `${BASE_URL}/movie/550?api_key=${API_KEY}`
+  );
+  const data = await response.json();
+  console.log(data);
+
+  // Set backdrop image 
+  document.querySelector(".backdrop").style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${data.backdrop_path})`;
+
+  // Set poster image
+  document.querySelector(".poster img").src = `https://image.tmdb.org/t/p/w200/${data.poster_path}`;
+  document.querySelector(".poster a").href = data.homepage;
+}
+
+getMovie();
+    </script>
+  </body>
+</html>-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Displaying a Movie Backdrop from TMDb API</title>
+  <style>
+    body {
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      width: 600px;
+      height: 70vh;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Loading...</h1>
+  <p>Please wait while we fetch a movie backdrop from TMDb API</p>
+</div>
+
+<script>
+  const API_KEY = '068f0f7197e9637e1ff61c5fdffa4c95';
+  const BASE_URL = 'https://api.themoviedb.org/3/movie/popular';
+  const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original';
+
+  // Fetch a popularmovie from TMDb API
+  fetch(`${BASE_URL}?api_key=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => {
+      const movie = data.results[0];
+      const backdropPath = movie.backdrop_path;
+      const posterPath = movie.poster_path;
+
+      // Set the background image using CSS
+      document.body.style.backgroundImage = `url(${IMAGE_BASE_URL}${backdropPath})`;
+
+      // Create a link to the movie poster
+      const posterLink = document.createElement('a');
+      posterLink.href = `https://www.themoviedb.org/movie/${movie.id}`;
+      posterLink.target = '_blank';
+
+      // Create an image element for the movie poster
+      const posterImage = document.createElement('img');
+      posterImage.src = `${IMAGE_BASE_URL}${posterPath}`;
+      posterImage.alt = movie.title;
+      posterImage.style.width = '100%';
+
+      // Append the poster image to the link
+      posterLink.appendChild(posterImage);
+
+      // Append the link to the container
+      const container = document.querySelector('.container');
+      container.innerHTML = '';
+      container.appendChild(posterLink);
+    })
+    .catch(error => {
+      console.error(error);
+      const container = document.querySelector('.container');
+      container.innerHTML = '<h1>Error fetching movie data</h1>';
+    });
+</script>
+
+</body>
+</html>

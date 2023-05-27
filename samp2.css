@@ -59,6 +59,7 @@ body{
     height: 70vh;
     object-fit: cover;
     border-radius: 7px;
+    background: rgba(0, 0, 0, 0.6);
 }
 li{
     list-style: none;
