@@ -20,13 +20,16 @@
 </head>
 <body>
     
+    <!--Movie Body Container-->
     <div class="body-container">
         <div class="background"></div>
         <i class="fa-solid fa-xmark closeBtn"></i>
+
+        <!-- SIDE MENU-->
         <div class="sidemenu">
             <div class="sidebar">
                 <header>
-                    <a  style="display: flex; align-items: center;" class="movieheader" href="samp4.html">
+                    <a  style="display: flex; align-items: center;" class="movieheader" href="test2.html">
                         <i style="color: hsla(349, 69%, 51%, 1);" class="fa-solid fa-video"></i>
                         <p style="display: flex; align-items: center;">any<span style="color: hsla(349, 69%, 51%, 1);">movie</span></p>                                          
                     </a>
@@ -37,6 +40,20 @@
                 <div class="genres">
                     <div class="head">
                         Categories
+                    </div>
+                    <ul>
+                        <li id="popular" class="sidelink">Trending</li>
+                        <li id="topRated" class="sidelink">Top Rated</li>
+                        <li id="newMovies" class="sidelink">Upcoming</li>
+                    </ul>
+                    
+                </div>
+
+                <div class="line"></div>
+
+                <div class="trends">
+                    <div class="head">
+                        Genres
                     </div>
                     <ul>
                         <a class="sidelink" href="#"><li>Action</li></a>
@@ -55,23 +72,11 @@
                         <a class="sidelink" href=""><li>Science Fiction</li></a>
                     </ul>
                 </div>
-
-                <div class="line"></div>
-
-                <div class="trends">
-                    <div class="head">
-                        Categories
-                    </div>
-                    <ul>
-                        <a class="sidelink" href=""><li>Trending</li></a>
-                        <a class="sidelink" href=""><li>Top Rated</li></a>
-                        <a class="sidelink" href=""><li>Upcoming</li></a>
-                    </ul>
-                </div>
             </div>
         </div>
 
 
+        <!--MAIN MOVIE PAGE-->
         <div class="main">
             <header class="header">        
                 <div class="search-bar">
@@ -91,7 +96,7 @@
                 </div> 
             </header>
 
-
+            <!--BACKGROUND IMAGE-->
             <div class="bg-container">
                 <div class="bgImage">
                     <div class="details">
@@ -109,22 +114,30 @@
             </div>
 
 
+            <!--MOVIE CONTAINER-->
             <section class="slider-container">
-                <header class="popularHeader">
-                    <p>Popular Movies</p>
-                </header>
-                <div class="container">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-        
-                            
-                            </div>
+                <div id="movieList" class="movie-wrapper">
+                    <!--<div class="movieContainer">
+                        <div class="img-box">
+                            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}"/>
+                                <header class="titlelink">
+                                    <a href="#">${movie.original_title}</a>
+                                </header>
+
+                                <div class="votedate">
+                                    <div class="vote">
+                                        <i style="color: rgb(255, 234, 0);" class="fa-solid fa-star star"></i>
+                                        <span>${movie.vote_average}</span>
+                                    </div>
+
+                                    <div>${movie.release_date}</div>
+                                </div>
                         </div>
-                        <div style="color: #000; background-color: #fff; padding: .3rem;" class="swiper-button-next"></div>
-                        <div style="color: #000; background-color: #fff; padding: .3rem;" class="swiper-button-prev"></div>
-                    </div>
+                    </div>-->
                 </div>
             </section>
+
+            
         
 
         </div>

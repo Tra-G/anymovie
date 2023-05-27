@@ -7,9 +7,9 @@ hamburger.addEventListener("click", function() {
 });
 
 /*closeIcon.addEventListener('click', () => {
-  closeicon.classList.remove('show');
-});*/
-
+  closeicon.classList.remove('none');
+});
+*/
 
 //The search bar
 const searchBar = document.querySelector('.search-bar');
@@ -55,18 +55,14 @@ searchBtn.onclick = showSearch;
 closeIcon.onclick = closeSearch;
 */
 
-
-
-    const API_KEY = '068f0f7197e9637e1ff61c5fdffa4c95';
-    const BASE_URL = 'https://api.themoviedb.org/3/movie/popular?api_key=' + API_KEY;
-
-    fetch(BASE_URL)
+function showBgImage(url) {
+  fetch(url)
       .then(response => response.json())
       .then(data => {
         const movie = data.results[0];
         
         
-
+        
         const backdropUrl = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path;
         const posterUrl = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
 
@@ -89,6 +85,38 @@ closeIcon.onclick = closeSearch;
         overviewElement.textContent =movie.overview;
       })
       .catch(error => console.error(error));
+}
+
+//Get references to the buttons that will trigger the movie list display
+const topRated = document.getElementById('topRated');
+const popular = document.getElementById('popular');
+const newMovies = document.getElementById('newMovies');
+
+
+//Popular Movies
+popular.addEventListener('click', () => {
+  const popularUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  showBgImage(popularUrl);
+});
+
+//Top rated movies
+topRated.addEventListener('click', () => {
+  const topRatedUrl = 'https://api.themoviedb.org/3/movie/top_rated?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  showBgImage(topRatedUrl);
+});
+
+//New Movies
+newMovies.addEventListener('click', () => {
+  const newMoviesUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  showBgImage(newMoviesUrl);
+});
+
+
+
+
+
+
+
 
 
 //Popular movie slider
@@ -122,15 +150,17 @@ var swiper = new Swiper(".mySwiper", {
 });
 
 
-//API call for Popular movies
-const apiKey = '068f0f7197e9637e1ff61c5fdffa4c95'; // replace with your own API key
-const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
-fetch(apiUrl)
+
+function displayMovieList(url) {
+  fetch(url)
   .then(response => response.json())
   .then(data => {
     const movies = data.results;
-    const swiperWrapper = document.querySelector('.swiper-wrapper');
+    
+    /*const swiperWrapper = document.querySelector('.movie-wrapper');*/
+    const movieList = document.getElementById('movieList');
+    movieList.innerHTML = '';
 
     movies.forEach(movie => {
       const posterPath = movie.poster_path;
@@ -140,7 +170,7 @@ fetch(apiUrl)
       const releaseDate = movie.release_date;
 
       const slide = document.createElement('div');
-      slide.classList.add('swiper-slide');
+      slide.classList.add('movieContainer');
 
       const imgBox = document.createElement('div');
       imgBox.classList.add('img-box');
@@ -150,17 +180,23 @@ fetch(apiUrl)
       img.alt = title;
 
       const header = document.createElement('header');
-      const heading = document.createElement('h3');
+      header.classList.add('popularHead');
+      
+      const heading = document.createElement('a');
+      heading.href = `https://www.themoviedb.org/movie/${movie.id}`;
       heading.textContent = title;
+      heading.classList.add('titlelink');
 
       const voteDate = document.createElement('div');
       voteDate.classList.add('votedate');
 
       const vote = document.createElement('div');
       vote.classList.add('vote');
+
       const starIcon = document.createElement('i');
       starIcon.style.color = 'rgb(255, 234, 0)';
       starIcon.classList.add('fa-solid', 'fa-star', 'star');
+
       const ratingSpan = document.createElement('span');
       ratingSpan.textContent = rating;
 
@@ -177,7 +213,40 @@ fetch(apiUrl)
       imgBox.appendChild(header);
       imgBox.appendChild(voteDate);
       slide.appendChild(imgBox);
-      swiperWrapper.appendChild(slide);
+      movieList.appendChild(slide);
     });
+
+    
   })
   .catch(error => console.error(error));
+}
+
+//Get references to the buttons that will trigger the movie list display
+const topRatedButton = document.getElementById('topRated');
+const popularButton = document.getElementById('popular');
+const newMoviesButton = document.getElementById('newMovies');
+
+
+//Popular Movies
+popularButton.addEventListener('click', () => {
+  const popularUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  displayMovieList(popularUrl);
+});
+
+//Top rated movies
+topRatedButton.addEventListener('click', () => {
+  const topRatedUrl = 'https://api.themoviedb.org/3/movie/top_rated?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  displayMovieList(topRatedUrl);
+});
+
+//New Movies
+newMoviesButton.addEventListener('click', () => {
+  const newMoviesUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  displayMovieList(newMoviesUrl);
+});
+
+
+
+
+
+  

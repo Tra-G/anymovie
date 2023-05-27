@@ -77,10 +77,11 @@ li{
     padding: 0 1.5rem;
     margin: 2rem 0;
 }
-.sidelink li:hover{
+.sidelink:hover{
     color: #f0f0f0;
     font-weight: 600;
     transition-duration: 0.4s;
+    cursor: pointer;
 }
 
 .line{
@@ -197,8 +198,6 @@ li{
     height: 50vh;
     width: 100%;
   }
-
-
   .details {
     width: 20rem;
     top: 40%;
@@ -214,6 +213,7 @@ li{
     font-weight: bold;
     margin-bottom: 10px;
   }
+
   .year, .rating, .genre {
     color: #c7bfbf;
     font-size: 15px;
@@ -228,6 +228,8 @@ li{
 /*Popular movie slider*/
 .slider-container{
     height: 100vh;
+    width: 97%;
+    margin: 1rem auto 0;
 }
 .popularHeader{
     width: 95%;
@@ -235,30 +237,36 @@ li{
     font-size: 1.4rem;
     font-weight: 600;
 }
-h3{
+.popularHead{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 200px;
+    width: 85%;
+}
+.titlelink{
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.img-box{
+    width: 80%;
+    margin: 15px 0;
 }
 .img-box img{
-    max-width: 100%;
+    width: 100%;
     height:  37vh;
     object-fit: cover;
     border-radius: 12px;
 }
 
-.slider-container .container{
+.slider-container{
     padding: 0 15px;
-    width: 90%;
-    margin: 0 auto;
 }
-.mySwiper{
-    padding: 30px 0;
+.movie-wrapper{
+    display: flex;
+    flex-direction: column;
 }
-header{
-    color: #fff;
-}
+
 .votedate{
     display: flex;
     align-items: center;
@@ -328,12 +336,12 @@ header{
 
     /*BACKGROUND IMAGE*/
     .bg-container{
-        height: 60vh;
-        width: 97%;
+        height: 65vh;
+        width: 95%;
         margin: auto;
     }
     .bgImage{
-        height: 60vh;
+        height: 65vh;
         border-radius: 7px;
     }
     .details{
@@ -352,16 +360,25 @@ header{
 
 
 /*Popular Movie slider*/
-.popularHeader{
-    font-size: 2rem;
+.popularHead{
+    width: 180px;
 }
-.slider-container .container{
+.titlelink{
+    font-size: 1.2rem;
+}
+.slider-container{
     padding: 0 15px;
-    width: 100%;
-    margin: 0 auto;
+    width: 98%;
+}
+.movie-wrapper{
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-
+.img-box{
+    margin: 10px 5px;
+    width: 200px;
+}
 
 }
 

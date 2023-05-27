@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div style="cursor: pointer; padding: 10px; border: 2px solid rgb(85, 83, 83); width: 100px; margin: 10px 0;" id="topRatedButton">Top rated</div>
+    <div style="cursor: pointer; padding: 10px; border: 2px solid rgb(85, 83, 83); width: 100px; margin: 10px 0;" id="popularButton">Popular movies</div>
+    <div style="cursor: pointer; padding: 10px; border: 2px solid rgb(85, 83, 83); width: 100px; margin: 10px 0;" id="newMoviesButton">New Movies</div>
+    <div id="movieList"></div>
+
+
+    <script>
+        /*const API_KEY = '068f0f7197e9637e1ff61c5fdffa4c95';
+    const BASE_URL = 'https://api.themoviedb.org/3/movie/popular?api_key=' + API_KEY;*/
+
+        // Define a function to fetch the movie data from TMDB and update the HTML content
+function displayMovieList(url) {
+  // Make an API request to TMDB
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      // Extract the movie results from the API response
+      const movies = data.results;
+
+      // Get a reference to the HTML element where we'll display the movie data
+      const movieList = document.getElementById('movieList');
+
+      // Clear any existing content from the movie list
+      movieList.innerHTML = '';
+
+      // Loop through the movie results and create HTML elements to display each movie
+      movies.forEach(movie => {
+        const movieElement = document.createElement('div');
+        movieElement.classList.add('movie');
+        movieElement.innerHTML = `<h2>${movie.title}</h2><p>${movie.overview}</p>`;
+        movieList.appendChild(movieElement);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching movie data:', error);
+    });
+}
+
+// Get references to the buttons that will trigger the movie list display
+const topRatedButton = document.getElementById('topRatedButton');
+const popularButton = document.getElementById('popularButton');
+const newMoviesButton = document.getElementById('newMoviesButton');
+
+// Add event listeners to the buttons that will trigger the movie list display
+topRatedButton.addEventListener('click', () => {
+  const topRatedUrl = 'https://api.themoviedb.org/3/movie/top_rated?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  displayMovieList(topRatedUrl);
+});
+
+popularButton.addEventListener('click', () => {
+  const popularUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  displayMovieList(popularUrl);
+});
+
+newMoviesButton.addEventListener('click', () => {
+  const newMoviesUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  displayMovieList(newMoviesUrl);
+});
+    </script>
+</body>
+</html>
