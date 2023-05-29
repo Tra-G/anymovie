@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button id="action">Action</button>
+        <button id="comedy">Comedy</button>
+        <button id="drama">Drama</button>
+        <button id="horror">Horror</button>
+        <button id="romance">Romance</button>
+        <button id="science-fiction">Science Fiction</button>
+        <button id="thriller">Thriller</button>
+      </div>
+      
+      <div id="movies-container"></div>
+
+
+
+    <script>
+        //Calling the api key, base url and image url
+        const API_KEY = '068f0f7197e9637e1ff61c5fdffa4c95';
+        const MOVIES_URL = 'https://api.themoviedb.org/3/discover/movie';
+        const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500/';
+
+
+        //Creating a variable for each button
+        const moviesContainer = document.getElementById('movies-container');
+        const actionButton = document.getElementById('action');
+        const comedyButton = document.getElementById('comedy');
+        const dramaButton = document.getElementById('drama');
+        const horrorButton = document.getElementById('horror');
+        const romanceButton = document.getElementById('romance');
+        const scifiButton = document.getElementById('science-fiction');
+        const thrillerButton = document.getElementById('thriller');
+
+        //Creating a function for the movie genre
+        function displayMovies(genreId) {
+        moviesContainer.innerHTML = '';
+
+        const url = `${MOVIES_URL}?api_key=${API_KEY}&with_genres=${genreId}`;
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+        data.results.forEach(movie => {
+        const movieElement = document.createElement('div');
+        movieElement.classList.add('movie');
+        const moviePoster = document.createElement('img');
+        moviePoster.src = `${IMAGE_BASE_URL}${movie.poster_path}`;
+        moviePoster.alt = movie.title;
+
+        const movieInfo = document.createElement('div');
+        movieInfo.classList.add('movie-info');
+
+        const movieTitle = document.createElement('h3');
+        movieTitle.textContent = movie.title;
+
+        const movieRating = document.createElement('span');
+        movieRating.classList.add('movie-rating');
+        movieRating.textContent = `Rating: ${movie.vote_average}`;
+
+        const movieYear = document.createElement('span');
+        movieYear.classList.add('movie-year');
+        movieYear.textContent = `Year: ${movie.release_date.substring(0, 4)}`;
+
+        movieInfo.appendChild(movieTitle);
+        movieInfo.appendChild(movieRating);
+        movieInfo.appendChild(movieYear);
+
+        movieElement.appendChild(moviePoster);
+        movieElement.appendChild(movieInfo);
+
+        moviesContainer.appendChild(movieElement);
+    });
+    })
+    .catch(error => {
+    console.error(error);
+    });
+}
+
+
+    // Add event listeners to the buttons
+        actionButton.addEventListener('click', () => {
+        displayMovies(28);
+        });
+
+        comedyButton.addEventListener('click', () => {
+        displayMovies(35);
+        });
+
+        dramaButton.addEventListener('click', () => {
+        displayMovies(18);
+        });
+
+        horrorButton.addEventListener('click', () => {
+        displayMovies(27);
+        });
+
+        romanceButton.addEventListener('click', () => {
+        displayMovies(10749);
+        });
+
+        scifiButton.addEventListener('click', () => {
+        displayMovies(878);
+        });
+
+        thrillerButton.addEventListener('click', () => {
+        displayMovies(53);
+        });
+
+        // Display the movies for the default genre (Action)
+        displayMovies(28);
+    </script>
+</body>
+</html>

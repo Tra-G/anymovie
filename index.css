@@ -20,6 +20,9 @@ body{
 a{
     text-decoration: none;
 }
+li:hover{
+    cursor: pointer;
+}
 
 /*SIDE MENU*/
 .sidemenu{
@@ -28,7 +31,7 @@ a{
     width: 260px;
     height: 100vh;
     position: fixed;
-    z-index: 1;
+    z-index: 7;
     top: 0;
     left: 0;
     overflow: scroll;
@@ -130,6 +133,7 @@ li{
     align-items: center;
     justify-content: space-between;
     padding: 1.3rem 0;
+    box-shadow: 0, 0, 5px rgba(0, 0, 0, 0.2);
     /*margin-left: 260px;*/
 }
 .search-bar{
@@ -187,10 +191,25 @@ li{
 }
 
 
-/*Background image*/
+/*Background image slider*/
+.swiper-container{
+    width: 95%;
+    margin: auto;
+}
+.bg-slider img{
+    width: 90%;
+    height: 60vh;
+    object-fit: cover;
+}
+
+
+/*Background image for trends*/
 .bg-container {
     height: 50vh;
+    display: none;
   }
+  
+
   .bgImage {
     background-size: cover;
     background-position: center;
@@ -230,6 +249,7 @@ li{
     height: 100vh;
     width: 97%;
     margin: 1rem auto 0;
+    display: none;
 }
 .popularHeader{
     width: 95%;

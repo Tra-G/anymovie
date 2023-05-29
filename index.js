@@ -55,6 +55,22 @@ searchBtn.onclick = showSearch;
 closeIcon.onclick = closeSearch;
 */
 
+/*Background Image slider */
+var bgSwiper = new Swiper('.swiper-container', {
+  // Navigation arrows
+  loop: true,
+  // Autoplay
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+  // Move one image per time
+  slidesPerView: 1,
+  spaceBetween: 0,
+});
+
+
+
 function showBgImage(url) {
   fetch(url)
       .then(response => response.json())
@@ -88,10 +104,17 @@ function showBgImage(url) {
 }
 
 //Get references to the buttons that will trigger the movie list display
+const home = document.getElementById('home');
 const topRated = document.getElementById('topRated');
 const popular = document.getElementById('popular');
 const newMovies = document.getElementById('newMovies');
 
+
+//Upcoming movies - Home
+home.addEventListener('click', () => {
+  const upComingUrl = 'https://api.themoviedb.org/3/movie/upcoming?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  showBgImage(upComingUrl);
+});
 
 //Popular Movies
 popular.addEventListener('click', () => {
@@ -114,41 +137,33 @@ newMovies.addEventListener('click', () => {
 
 
 
+//Making the link only visible to click event
+const homeLink = document.getElementById('home');
+const popularLink = document.getElementById('popular');
+const topRatedLink = document.getElementById('topRated');
+const newMoviesLink = document.getElementById('newMovies');
+const BgImg = document.getElementById('bg-container');
+const sliderContainer = document.getElementById('slider-container');
 
+homeLink.addEventListener('click', () => {
+  BgImg.style.display = 'block';
+  sliderContainer.style.display = 'block';
+})
 
+popularLink.addEventListener('click', () => {
+  BgImg.style.display = 'block';
+  sliderContainer.style.display = 'block';
+})
 
+topRatedLink.addEventListener('click', () => {
+  BgImg.style.display = 'block';
+  sliderContainer.style.display = 'block';
+})
 
-
-//Popular movie slider
-var swiper = new Swiper(".mySwiper", {
-  slidesPerView: 4,
-  loop: true,
-  speed: 1000,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  breakpoints: {
-    320: {
-      slidesPerView: 1,
-    },
-    480: {
-      slidesPerView: 2,
-    },
-    768: {
-        slidesPerView: 3,
-    },
-    1200: {
-      slidesPerView: 6,
-      spaceBetween: 10,         
-    },
-  },
-});
-
+newMoviesLink.addEventListener('click', () => {
+  BgImg.style.display = 'block';
+  sliderContainer.style.display = 'block';
+})
 
 
 
@@ -222,10 +237,17 @@ function displayMovieList(url) {
 }
 
 //Get references to the buttons that will trigger the movie list display
+const homepage = document.getElementById('home');
 const topRatedButton = document.getElementById('topRated');
 const popularButton = document.getElementById('popular');
 const newMoviesButton = document.getElementById('newMovies');
 
+
+//Upcoming movies - Home
+homepage.addEventListener('click', () => {
+  const upComingUrl = 'https://api.themoviedb.org/3/movie/upcoming?api_key=068f0f7197e9637e1ff61c5fdffa4c95';
+  displayMovieList(upComingUrl);
+});
 
 //Popular Movies
 popularButton.addEventListener('click', () => {
@@ -247,6 +269,153 @@ newMoviesButton.addEventListener('click', () => {
 
 
 
+//Movie By Genres
+//Calling the api key, base url and image url
+const API_KEY = '068f0f7197e9637e1ff61c5fdffa4c95';
+const MOVIES_URL = 'https://api.themoviedb.org/3/discover/movie';
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500/';
 
+//Creating a variable for each button
+const Genres = document.getElementById('Genres');
+
+const action = document.getElementById('action');
+const comedy = document.getElementById('comedy');
+const drama = document.getElementById('drama');
+const horror = document.getElementById('horror');
+const romance = document.getElementById('romance');
+const scifi = document.getElementById('science-fiction');
+const war = document.getElementById('war');
+const family = document.getElementById('family');
+const mystery = document.getElementById('mystery');
+const music = document.getElementById('music');
+const western = document.getElementById('western');
+const tvMovies = document.getElementById('tvMovies');
+const adventure = document.getElementById('adventure');
+const thriller = document.getElementById('thriller');
+const animation = document.getElementById('animation');
+const history = document.getElementById('history');
+const fantasy = document.getElementById('fantasy');
+const crime = document.getElementById('crime');
+
+
+//Creating a function for the movie genre
+function displayGenre(genreId) {
+  Genres.innerHTML = '';
+
+  const url = `${MOVIES_URL}?api_key=${API_KEY}&with_genres=${genreId}`;
+  fetch(url)
+  .then(response => response.json())
+  .then(data => {
+  data.results.forEach(movie => {
+  const movieElement = document.createElement('div');
+  movieElement.classList.add('movie');
+  const moviePoster = document.createElement('img');
+  moviePoster.src = `${IMAGE_BASE_URL}${movie.poster_path}`;
+  moviePoster.alt = movie.title;
+
+  const movieInfo = document.createElement('div');
+  movieInfo.classList.add('movie-info');
+
+  const movieTitle = document.createElement('h3');
+  movieTitle.textContent = movie.title;
+
+  const movieRating = document.createElement('span');
+  movieRating.classList.add('movie-rating');
+  movieRating.textContent = `Rating: ${movie.vote_average}`;
+
+  const movieYear = document.createElement('span');
+  movieYear.classList.add('movie-year');
+  movieYear.textContent = `Year: ${movie.release_date.substring(0, 4)}`;
+
+  movieInfo.appendChild(movieTitle);
+  movieInfo.appendChild(movieRating);
+  movieInfo.appendChild(movieYear);
+
+  movieElement.appendChild(moviePoster);
+  movieElement.appendChild(movieInfo);
+
+  Genres.appendChild(movieElement);
+});
+})
+.catch(error => {
+console.error(error);
+});
+}
+
+
+// Add event listeners to the buttons
+  action.addEventListener('click', () => {
+    displayGenre(28);
+  });
+
+  comedy.addEventListener('click', () => {
+    displayGenre(35);
+  });
+
+  drama.addEventListener('click', () => {
+    displayGenre(18);
+  });
+
+  horror.addEventListener('click', () => {
+    displayGenre(27);
+  });
+
+  romance.addEventListener('click', () => {
+    displayGenre(10749);
+  });
+
+  scifi.addEventListener('click', () => {
+    displayGenre(878);
+  });
+
+  thriller.addEventListener('click', () => {
+    displayGenre(53);
+  });
+
+  adventure.addEventListener('click', () => {
+    displayGenre(12);
+  });
+
+  mystery.addEventListener('click', () => {
+    displayGenre(9648);
+  });
+
+  history.addEventListener('click', () => {
+    displayGenre(36);
+  });
+
+  western.addEventListener('click', () => {
+    displayGenre(37);
+  });
+
+  war.addEventListener('click', () => {
+    displayGenre(10752);
+  });
+
+  family.addEventListener('click', () => {
+    displayGenre(10751);
+  });
+
+  music.addEventListener('click', () => {
+    displayGenre(10402);
+  });
 
   
+
+  animation.addEventListener('click', () => {
+    displayGenre(16);
+  });
+
+  crime.addEventListener('click', () => {
+    displayGenre(80);
+  });
+
+  fantasy.addEventListener('click', () => {
+    displayGenre(14);
+  });
+
+  
+
+
+  // Display the movies for the default genre (Action)
+    displayGenre(28);
