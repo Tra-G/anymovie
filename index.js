@@ -298,6 +298,13 @@ const fantasy = document.getElementById('fantasy');
 const crime = document.getElementById('crime');
 
 
+
+//Movie Genre By title
+function displayGenreTitle(genre) {
+  document.getElementById("genre-header").innerHTML = "<h1>" + genre + "</h1>";
+}
+
+
 //Creating a function for the movie genre
 function displayGenre(genreId) {
   Genres.innerHTML = '';
@@ -417,5 +424,5 @@ console.error(error);
   
 
 
-  // Display the movies for the default genre (Action)
-    displayGenre(28);
+  /* Display the movies for the default genre (Action)
+    displayGenre(28);*/

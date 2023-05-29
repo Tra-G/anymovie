@@ -29,7 +29,7 @@
         <div class="sidemenu">
             <div class="sidebar">
                 <header>
-                    <a  style="display: flex; align-items: center;" class="movieheader" href="test3.html">
+                    <a  style="display: flex; align-items: center;" class="movieheader" href="test4.html">
                         <i style="color: hsla(349, 69%, 51%, 1);" class="fa-solid fa-video"></i>
                         <p style="display: flex; align-items: center;">any<span style="color: hsla(349, 69%, 51%, 1);">movie</span></p>                                          
                     </a>
@@ -57,24 +57,24 @@
                         Genres
                     </div>
                     <ul>
-                        <li id="action">Action</li>
-                        <li id="adventure">Adventure</li>
-                        <li id="animation">Animation</li>
-                        <li id="thriller">Thriller</li>
-                        <li id="comedy">Comedy</li>
-                        <li id="horror">Horror</li>
-                        <li id="crime">Crime</li>
-                        <li id="family">Family</li>
-                        <li id="romance">Romance</li>
-                        <li id="war">War</li>
-                        <li id="fantasy">Fantasy</li>
-                        <li id="music">Music</li>
-                        <li id="drama">Drama</li>
-                        <li id="mystery">Mystery</li>
-                        <li id="science-fiction">Science Fiction</li>
-                        <li id="western">Western</li>
-                        <li id="history">History</li>
-                        <li id="tvMovie">Tv Movie</li>
+                        <li id="action" onclick="displayGenreTitle('Action movies')">Action</li>
+                        <li id="adventure" onclick="displayGenreTitle('Adventure movies')">Adventure</li>
+                        <li id="animation" onclick="displayGenreTitle('Animation movies')">Animation</li>
+                        <li id="thriller" onclick="displayGenreTitle('Thriller movies')">Thriller</li>
+                        <li id="comedy" onclick="displayGenreTitle('Comedy movies')">Comedy</li>
+                        <li id="horror" onclick="displayGenreTitle('Horror movies')">Horror</li>
+                        <li id="crime" onclick="displayGenreTitle('Crime movies')">Crime</li>
+                        <li id="family" onclick="displayGenreTitle('Family movies')">Family</li>
+                        <li id="romance" onclick="displayGenreTitle('Romance movies')">Romance</li>
+                        <li id="war" onclick="displayGenreTitle('War movies')">War</li>
+                        <li id="fantasy" onclick="displayGenreTitle('Fantasy movies')">Fantasy</li>
+                        <li id="music" onclick="displayGenreTitle('Music movies')">Music</li>
+                        <li id="drama" onclick="displayGenreTitle('Drama movies')">Drama</li>
+                        <li id="mystery" onclick="displayGenreTitle('Mystery movies')">Mystery</li>
+                        <li id="science-fiction" onclick="displayGenreTitle('Sci-Fi movies')">Science Fiction</li>
+                        <li id="western" onclick="displayGenreTitle('Western movies')">Western</li>
+                        <li id="history" onclick="displayGenreTitle('History movies')">History</li>
+                        <li id="tvMovie" onclick="displayGenreTitle('Tv movies')">Tv Movie</li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +142,10 @@
                 </div>
             </section>
 
-            <div id="Genres"></div>
+            <div class="genreContainer">
+                <div id="genre-header"></div>
+                <div id="Genres"></div>
+            </div>
         
 
         </div>

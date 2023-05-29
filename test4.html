@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Genres</title>
+  </head>
+  <body>
+    <h1>Select a Movie Genre</h1>
+    <button id="action" onclick="displayGenre('Action movies')">Action</button>
+    <button id="comedy" onclick="displayGenre('Comedy movies')">Comedy</button>
+    <button id="drama" onclick="displayGenre('Drama movies')">Drama</button>
+    <button id="horror" onclick="displayGenre('Horror movies')">Horror</button>
+    <button id="romance" onclick="displayGenre('Romance movies')">Romance</button>
+    <button id="sci-fi" onclick="displayGenre('Sci-Fi movies')">Sci-Fi</button>
+    <button id="thriller" onclick="displayGenre('Thriller movies')">Thriller</button>
+    <button id="western" onclick="displayGenre('Western movies')">Western</button>
+    <div id="genre-header"></div>
+    <script>
+      function displayGenre(genre) {
+        document.getElementById("genre-header").innerHTML = "<h2>" + genre + "</h2>";
+      }
+    </script>
+  </body>
+</html>

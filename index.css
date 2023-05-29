@@ -285,6 +285,7 @@ li{
 .movie-wrapper{
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .votedate{
@@ -296,6 +297,32 @@ li{
 .vote{
     display: flex;
     align-items: center;
+}
+
+
+
+/*Getting movies by their genre*/
+.genreContainer{
+    width: 90%;
+    margin: 1rem auto;
+}
+#Genres{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#genre-header{
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.movie{
+    width: 80%;
+    margin: 10px 0;
+}
+.movie img{
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
 }
 
 
@@ -398,6 +425,17 @@ li{
 .img-box{
     margin: 10px 5px;
     width: 200px;
+}
+
+
+/*Movies by genres*/
+.genreContainer{
+    width: 97%;
+}
+.movie{
+    width: 200px;
+    margin: 7px 5px;
+    
 }
 
 }
