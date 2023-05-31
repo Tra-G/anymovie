@@ -29,7 +29,7 @@
         <div class="sidemenu">
             <div class="sidebar">
                 <header>
-                    <a  style="display: flex; align-items: center;" class="movieheader" href="test4.html">
+                    <a  style="display: flex; align-items: center;" class="movieheader" href="test5.html">
                         <i style="color: hsla(349, 69%, 51%, 1);" class="fa-solid fa-video"></i>
                         <p style="display: flex; align-items: center;">any<span style="color: hsla(349, 69%, 51%, 1);">movie</span></p>                                          
                     </a>
@@ -101,56 +101,58 @@
                 </div> 
             </header>
 
-            <!--BACKGROUND IMAGE-->
-            <div id="bg-container" class="bg-container">
-                <div class="bgImage">
-                    <div class="details">
-                        <div class="title"></div>
+            <div class="anyMovieContainer" id="anyMovieContainer">
+                <!--BACKGROUND IMAGE-->
+                <div id="bg-container" class="bg-container">
+                    <div class="bgImage" onclick="displayMovies('trending')">
+                        <div class="details">
+                            <div class="title"></div>
 
-                        <div style="display: flex; align-items: center;">
-                            <span style="padding-right: 1rem;" class="year"></span>
-                            <span class="rating"></span>
+                            <div style="display: flex; align-items: center;">
+                                <span style="padding-right: 1rem;" class="year"></span>
+                                <span class="rating"></span>
+                            </div>
+                
+                            <div class="genre"></div>
+                            <div class="overview"></div>
                         </div>
-              
-                        <div class="genre"></div>
-                        <div class="overview"></div>
                     </div>
                 </div>
-            </div>
 
 
-            <!--MOVIE CONTAINER-->
-            <section id="slider-container" class="slider-container">
-                <div id="movieList" class="movie-wrapper">
-                    <!--<div class="movieContainer">
-                        <div class="img-box">
-                            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}"/>
-                                <header class="titlelink">
-                                    <a href="#">${movie.original_title}</a>
-                                </header>
+                <!--MOVIE CONTAINER-->
+                <section id="slider-container" class="slider-container">
+                    <div id="movieList" class="movie-wrapper">
+                        <!--<div class="movieContainer">
+                            <div class="img-box">
+                                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}"/>
+                                    <header class="titlelink">
+                                        <a href="#">${movie.original_title}</a>
+                                    </header>
 
-                                <div class="votedate">
-                                    <div class="vote">
-                                        <i style="color: rgb(255, 234, 0);" class="fa-solid fa-star star"></i>
-                                        <span>${movie.vote_average}</span>
+                                    <div class="votedate">
+                                        <div class="vote">
+                                            <i style="color: rgb(255, 234, 0);" class="fa-solid fa-star star"></i>
+                                            <span>${movie.vote_average}</span>
+                                        </div>
+
+                                        <div>${movie.release_date}</div>
                                     </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </section>
 
-                                    <div>${movie.release_date}</div>
-                                </div>
-                        </div>
-                    </div>-->
+                <div id="genreContainer" class="genreContainer">
+                    <div id="genre-header"></div>
+                    <div id="Genres"></div>
                 </div>
-            </section>
+            
 
-            <div class="genreContainer">
-                <div id="genre-header"></div>
-                <div id="Genres"></div>
             </div>
-        
-
         </div>
-    </div>
 
+    </div>
     
     
 

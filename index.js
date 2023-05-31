@@ -55,29 +55,13 @@ searchBtn.onclick = showSearch;
 closeIcon.onclick = closeSearch;
 */
 
-/*Background Image slider */
-var bgSwiper = new Swiper('.swiper-container', {
-  // Navigation arrows
-  loop: true,
-  // Autoplay
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-  },
-  // Move one image per time
-  slidesPerView: 1,
-  spaceBetween: 0,
-});
-
 
 
 function showBgImage(url) {
   fetch(url)
       .then(response => response.json())
       .then(data => {
-        const movie = data.results[0];
-        
-        
+        const movie = data.results[0];       
         
         const backdropUrl = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path;
         const posterUrl = 'https://image.tmdb.org/t/p/w500' + movie.poster_path;
@@ -139,15 +123,22 @@ newMovies.addEventListener('click', () => {
 
 //Making the link only visible to click event
 const homeLink = document.getElementById('home');
+const actionLink = document.getElementById('action');
 const popularLink = document.getElementById('popular');
 const topRatedLink = document.getElementById('topRated');
 const newMoviesLink = document.getElementById('newMovies');
 const BgImg = document.getElementById('bg-container');
-const sliderContainer = document.getElementById('slider-container');
+const genreContainer = document.getElementById('genreContainer');
+const sliderContainer = document.getElementById('slider-container');+
 
+//anyMovieContainer.innerHTML = '';
 homeLink.addEventListener('click', () => {
   BgImg.style.display = 'block';
   sliderContainer.style.display = 'block';
+})
+
+actionLink.addEventListener('click', () => {
+  genreContainer.style.display = 'block';
 })
 
 popularLink.addEventListener('click', () => {
@@ -308,6 +299,8 @@ function displayGenreTitle(genre) {
 //Creating a function for the movie genre
 function displayGenre(genreId) {
   Genres.innerHTML = '';
+  const movieList = document.getElementById('movieList');
+  movieList.innerHTML = '';
 
   const url = `${MOVIES_URL}?api_key=${API_KEY}&with_genres=${genreId}`;
   fetch(url)

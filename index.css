@@ -201,6 +201,9 @@ li{
     height: 60vh;
     object-fit: cover;
 }
+#home.active {
+    background-color: #008CBA;
+  }
 
 
 /*Background image for trends*/
@@ -303,10 +306,12 @@ li{
 
 /*Getting movies by their genre*/
 .genreContainer{
+    display: none;
     width: 90%;
     margin: 1rem auto;
 }
 #Genres{
+    
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
