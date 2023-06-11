@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Ubuntu', sans-serif;
+    background-color: rgb(11, 12, 13);
+    color: #fff;
+}
+.detailsContainer{
+    width: 70%;
+    margin: 2rem auto;
+}
+.movieDetails{
+    display: flex;
+    justify-content: space-between;
+}
+.moviePoster{
+    height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #757272;
+}
+.details{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.ratingCon{
+    display: flex;
+    justify-content: space-between;
+    color: #898383;
+    font-weight: 600;
+}
+.overview{
+    font-weight: 600;
+    color: #898383;
+}
+.castName{
+    display: flex;
+    justify-content: space-between;
+}
+.details div{
+    margin: .7rem 0;
+}
+.castdetails{
+    display: flex;
+}
+.castPosterItem img{
+    height: 20vh;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 0 7px;
+}
+
+.movieDetailsTitle{
+    font-size: 2rem;
+    font-weight: 600;
+}

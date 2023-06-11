@@ -80,7 +80,7 @@ li{
     padding: 0 1.5rem;
     margin: 2rem 0;
 }
-.sidelink:hover{
+li:hover{
     color: #f0f0f0;
     font-weight: 600;
     transition-duration: 0.4s;
@@ -190,29 +190,28 @@ li{
     margin: 6px 0;
 }
 
-
-/*Background image slider*/
-.swiper-container{
-    width: 95%;
-    margin: auto;
-}
-.bg-slider img{
-    width: 90%;
-    height: 60vh;
-    object-fit: cover;
-}
 #home.active {
     background-color: #008CBA;
   }
 
 
+.maindetails{
+    display: none;
+    background-color: rgb(11, 12, 13);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 8;
+}
+
+
 /*Background image for trends*/
 .bg-container {
     height: 50vh;
-    display: none;
+   
   }
   
-
   .bgImage {
     background-size: cover;
     background-position: center;
@@ -252,7 +251,7 @@ li{
     height: 100vh;
     width: 97%;
     margin: 1rem auto 0;
-    display: none;
+    
 }
 .popularHeader{
     width: 95%;
@@ -319,6 +318,7 @@ li{
 #genre-header{
     margin-bottom: 1.5rem;
     text-align: center;
+    
 }
 .movie{
     width: 80%;
@@ -329,6 +329,8 @@ li{
     height: 40vh;
     object-fit: cover;
 }
+
+
 
 
 
@@ -440,7 +442,23 @@ li{
 .movie{
     width: 200px;
     margin: 7px 5px;
-    
+}
+
+#Genre header{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 150px;
+}
+
+
+/*Display Details*/
+.detailsContainer{
+    width: 80%;
+}
+
+.details{
+    width: 30%;
 }
 
 }
