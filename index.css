@@ -330,8 +330,17 @@ li:hover{
     object-fit: cover;
 }
 
+/*SEARCH RESULTS*/
+.search-results{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
-
+.movieContainerResults{
+    width: 80%;
+}
 
 
 
@@ -459,6 +468,22 @@ li:hover{
 
 .details{
     width: 30%;
+}
+
+.search-results{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.movieContainerResults{
+    width: 180px;
+}
+
+.movieContainerResults img{
+    height: 25vh;
+    border-radius: 10px;
 }
 
 }

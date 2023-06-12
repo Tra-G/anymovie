@@ -58,6 +58,67 @@ closeIcon.onclick = closeSearch;
 
 
 
+/*Making the search bar functional */
+const form = document.querySelector('.search-bar');
+const input = form.querySelector('input');
+const searchResults = document.querySelector('.search-results');
+const background = document.getElementById('bg-container');
+const containerMovies = document.getElementById('slider-container');
+
+function popMovie() {
+  background.style.display = 'none';
+  containerMovies.style.display = 'none';
+}
+
+input.addEventListener ('click', () => {
+  popMovie('input');
+})
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const query = input.value;
+  const apiKey = '068f0f7197e9637e1ff61c5fdffa4c95'; // replace with your actual API key
+  const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    const movies = data.results;
+
+    searchResults.innerHTML = '';
+    background.innerHTML = '';
+    containerMovies.innerHTML = '';
+
+    movies.forEach((movie) => {
+      const { poster_path, title, release_date, vote_average } = movie;
+
+      const movieContainerResults = document.createElement('div');
+      movieContainerResults.classList.add('movie');
+
+      const posterUrl = poster_path
+        ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+        : 'https://via.placeholder.com/500x750?text=No+poster';
+
+      movieContainerResults.innerHTML = `
+        <img src="${posterUrl}" alt="${title}" />
+        <div class="movie-info">
+          <h3>${title}</h3>
+          <small>Released on ${release_date}</small>
+          <span class="rating">${vote_average}</span>
+        </div>
+      `;
+
+      searchResults.appendChild(movieContainerResults);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+
+
+
+
 function showBgImage(url) {
   fetch(url)
       .then(response => response.json())

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/" class="search-btn">
+        <input type="text" placeholder="search for a movie...">
+    </form>
+
+    <div class="search-results"></div>
+
+    <script>
+        const form = document.querySelector('.search-btn');
+        const input = form.querySelector('input');
+        const searchResults = document.querySelector('.search-results');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const query = input.value;
+    const apiKey = '068f0f7197e9637e1ff61c5fdffa4c95'; // replace with your actual API key
+    const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      const movies = data.results;
+
+      searchResults.innerHTML = '';
+
+      movies.forEach((movie) => {
+        const { poster_path, title, release_date, vote_average } = movie;
+
+        const movieContainer = document.createElement('div');
+        movieContainer.classList.add('movie');
+
+        const posterUrl = poster_path
+          ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+          : 'https://via.placeholder.com/500x750?text=No+poster';
+
+        movieContainer.innerHTML = `
+          <img src="${posterUrl}" alt="${title}" />
+          <div class="movie-info">
+            <h3>${title}</h3>
+            <small>Released on ${release_date}</small>
+            <span class="rating">${vote_average}</span>
+          </div>
+        `;
+
+        searchResults.appendChild(movieContainer);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  });
+    </script>
+</body>
+</html>
